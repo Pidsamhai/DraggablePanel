@@ -28,6 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Close" />
+        <Button
+            android:id="@+id/btnHideNav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hide Navigation" />
 
         <EditText
             android:id="@+id/etHeightMax"
@@ -59,7 +64,7 @@
         android:layout_height="0dp"
         app:height_when_max="300dp"
         app:height_when_min="58dp"
-        app:layout_constraintBottom_toTopOf="@+id/tablayout"
+        app:layout_constraintBottom_toTopOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -68,7 +73,7 @@
 
     <LinearLayout
         android:background="#00ff00"
-        android:id="@+id/tablayout"
+        android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         app:layout_constraintBottom_toBottomOf="parent"

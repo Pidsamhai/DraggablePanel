@@ -56,10 +56,10 @@
         })
 ```
 
-* Sync hide tablayout like youtube
+* Sync hide navigationLayout like youtube
 
 ```kotlin
-    draggablePanel.setTabLayout(tablayout /* Any View wan't to hide */)
+    draggablePanel.setNavigationLayout(navigation /* Any View wan't to hide */)
 ```
 
 * Disable and Enable Drag when configuration change

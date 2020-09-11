@@ -86,7 +86,7 @@ fun Array<ValuesHolder?>.animation(
     val keys = ArrayList<String>()
     val tos = ArrayList<Any>()
     for (valuesHolder in this) {
-        keys.add(valuesHolder!!.key)
+        keys.add(valuesHolder?.key ?: return)
         tos.add(valuesHolder.to)
     }
 
@@ -113,16 +113,16 @@ fun Array<ValuesHolder?>.animation(
         }
     }
 
-    animator.withEndAction(Runnable {
+    animator.withEndAction {
         onEnd()
-    })
+    }
     animator.interpolator = timeInterpolator
     animator.duration = duration
     animator.start()
 }
 
-fun Array<ValuesHolder?>.to(): Array<PropertyValuesHolder> {
-    return Array(size) { i -> this[i]!!.to() }
+fun Array<ValuesHolder?>.to(): Array<PropertyValuesHolder?> {
+    return Array(size) { i -> this[i]?.to() }
 }
 
 class ValuesHolder(val key: String, val from: Any, val to: Any) {

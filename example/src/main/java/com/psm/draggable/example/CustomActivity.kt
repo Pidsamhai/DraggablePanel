@@ -1,11 +1,14 @@
 package com.psm.draggable.example
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.psm.draggable.DraggablePanel
 import com.psm.draggable.utils.toPx
 import com.psm.draggable.example.fragment.BottomFragment
 import com.psm.draggable.example.fragment.TopFragment
+import com.psm.draggable.utils.gone
+import com.psm.draggable.utils.visible
 import kotlinx.android.synthetic.main.activity_custom.*
 import kotlinx.android.synthetic.main.layout_bottom.*
 import kotlin.math.max
@@ -32,7 +35,15 @@ class CustomActivity : AppCompatActivity() {
 
         })
 
-        draggablePanel.setTabLayout(tablayout)
+        draggablePanel.setNavigationLayout(navigation)
+
+        btnHideNav.setOnClickListener{
+            if (navigation.visibility == View.VISIBLE) {
+                navigation.gone()
+            } else {
+                navigation.visible()
+            }
+        }
 
         supportFragmentManager.beginTransaction().add(R.id.frameTop, TopFragment()).commit()
         supportFragmentManager.beginTransaction().add(R.id.frameBottom, BottomFragment()).commit()

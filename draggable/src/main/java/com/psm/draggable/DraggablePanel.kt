@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
 import android.util.AttributeSet
-import android.util.Log
 import android.view.*
 import android.widget.RelativeLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -78,8 +77,8 @@ open class DraggablePanel @JvmOverloads constructor(
 
     var mDraggableListener: DraggableListener? = null
 
-    private var tabLayout: View? = null
-    private var tabLayoutHeight: Int = -1
+    private var navigationLayout: View? = null
+    private var navigationLayoutHeight: Int = -1
 
     init {
 
@@ -496,9 +495,9 @@ open class DraggablePanel @JvmOverloads constructor(
             }
         }
 
-        val tabLayoutParams = tabLayout?.layoutParams
-        tabLayoutParams?.height = (tabLayoutHeight * mCurrentPercent).toInt()
-        tabLayout?.layoutParams = tabLayoutParams
+        val tabLayoutParams = navigationLayout?.layoutParams
+        tabLayoutParams?.height = (navigationLayoutHeight * mCurrentPercent).toInt()
+        navigationLayout?.layoutParams = tabLayoutParams
 
         toolbar.reHeight(toolBarHeight)
         refreshFrameFirst()
@@ -594,9 +593,9 @@ open class DraggablePanel @JvmOverloads constructor(
         frameSecond.visible()
     }
 
-    fun setTabLayout(view: View) {
-        tabLayout = view
-        tabLayoutHeight = view.layoutParams.height
+    fun setNavigationLayout(view: View) {
+        navigationLayout = view
+        navigationLayoutHeight = view.layoutParams.height
     }
 
     interface DraggableListener {
