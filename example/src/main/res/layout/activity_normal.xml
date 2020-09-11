@@ -37,7 +37,7 @@
         android:layout_height="match_parent"
         android:background="#000" />
 
-    <com.hoanganhtuan95ptit.draggable.DraggablePanel
+    <com.psm.draggable.DraggablePanel
         android:id="@+id/draggablePanel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

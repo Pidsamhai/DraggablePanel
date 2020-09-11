@@ -1,4 +1,4 @@
-package com.hoanganhtuan95ptit.draggable.utils
+package com.psm.draggable.utils
 
 import android.animation.Animator
 import android.animation.PropertyValuesHolder
@@ -12,12 +12,14 @@ import androidx.dynamicanimation.animation.FloatValueHolder
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
 
-fun Float.springAnimation(minValue: Float,
-                          maxValue: Float,
-                          startValue: Float,
-                          endValue: Float,
-                          onUpdate: (Float) -> Unit,
-                          onEnd: () -> Unit) {
+fun Float.springAnimation(
+        minValue: Float,
+        maxValue: Float,
+        startValue: Float,
+        endValue: Float,
+        onUpdate: (Float) -> Unit,
+        onEnd: () -> Unit
+) {
     val springX = SpringForce(endValue)
     springX.dampingRatio = 0.7f
     springX.stiffness = 300f
@@ -25,7 +27,13 @@ fun Float.springAnimation(minValue: Float,
     springAnimation.setStartVelocity(this)
             .setMinValue(minValue)
             .setMaxValue(maxValue)
-            .setStartValue(startValue)
+            .setStartValue(
+                    when {
+                        startValue > maxValue -> maxValue
+                        startValue < minValue -> minValue
+                        else -> startValue
+                    }
+            )
             .setSpring(springX)
             .setMinimumVisibleChange(DynamicAnimation.MIN_VISIBLE_CHANGE_PIXELS)
             .addUpdateListener { dynamicAnimation: DynamicAnimation<*>, value: Float, _: Float ->
@@ -130,14 +138,11 @@ class ValuesHolder(val key: String, val from: Any, val to: Any) {
 
 fun Animator.withEndAction(runnable: Runnable) {
     addListener(object : Animator.AnimatorListener {
-        override fun onAnimationRepeat(animation: Animator?) {
-        }
+        override fun onAnimationRepeat(animation: Animator?)  = Unit
 
-        override fun onAnimationCancel(animation: Animator?) {
-        }
+        override fun onAnimationCancel(animation: Animator?) = Unit
 
-        override fun onAnimationStart(animation: Animator?) {
-        }
+        override fun onAnimationStart(animation: Animator?) = Unit
 
         override fun onAnimationEnd(animation: Animator?) {
             animation?.removeAllListeners()

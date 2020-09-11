@@ -1,4 +1,4 @@
-package com.hoanganhtuan95ptit.draggable
+package com.psm.draggable
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,9 +10,9 @@ import android.widget.RelativeLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener
-import com.hoanganhtuan95ptit.draggable.utils.*
-import com.hoanganhtuan95ptit.draggable.widget.DragBehavior
-import com.hoanganhtuan95ptit.draggable.widget.DragFrame
+import com.psm.draggable.utils.*
+import com.psm.draggable.widget.DragBehavior
+import com.psm.draggable.widget.DragFrame
 import kotlinx.android.synthetic.main.layout_draggable_panel.view.*
 import kotlin.math.abs
 
@@ -77,6 +77,9 @@ open class DraggablePanel @JvmOverloads constructor(
     var mMarginBottomWhenMin = 0
 
     var mDraggableListener: DraggableListener? = null
+
+    private var tabLayout: View? = null
+    private var tabLayoutHeight: Int = -1
 
     init {
 
@@ -219,6 +222,10 @@ open class DraggablePanel @JvmOverloads constructor(
                 }
             }
         })
+
+        frameFirst.setOnClickListener {
+            this.maximize()
+        }
     }
 
     /**
@@ -489,8 +496,11 @@ open class DraggablePanel @JvmOverloads constructor(
             }
         }
 
-        toolbar.reHeight(toolBarHeight)
+        val tabLayoutParams = tabLayout?.layoutParams
+        tabLayoutParams?.height = (tabLayoutHeight * mCurrentPercent).toInt()
+        tabLayout?.layoutParams = tabLayoutParams
 
+        toolbar.reHeight(toolBarHeight)
         refreshFrameFirst()
     }
 
@@ -565,10 +575,34 @@ open class DraggablePanel @JvmOverloads constructor(
         }
     }
 
+    fun enableFullScreen() {
+        frameDrag.isFullScreen = true
+        appbarLayout.layoutParams
+        val params = frameFirst.layoutParams as CoordinatorLayout.LayoutParams
+        params.behavior = DragBehavior(frameSecond, true)
+        params.height = CoordinatorLayout.LayoutParams.MATCH_PARENT
+        frameFirst.layoutParams = params
+        frameSecond.gone()
+    }
+
+    fun disableFullScreen() {
+        frameDrag.isFullScreen = false
+        val params = frameFirst.layoutParams as CoordinatorLayout.LayoutParams
+        params.behavior = DragBehavior(frameSecond, false)
+        params.height = mHeightWhenMax
+        frameFirst.layoutParams = params
+        frameSecond.visible()
+    }
+
+    fun setTabLayout(view: View) {
+        tabLayout = view
+        tabLayoutHeight = view.layoutParams.height
+    }
+
     interface DraggableListener {
-        fun onExpanded() {}
-        fun onChangeState(state: State) {}
-        fun onChangePercent(percent: Float) {}
+        fun onExpanded() = Unit
+        fun onChangeState(state: State) = Unit
+        fun onChangePercent(percent: Float) = Unit
     }
 
     enum class State {

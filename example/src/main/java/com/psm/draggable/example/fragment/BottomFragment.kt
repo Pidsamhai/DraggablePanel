@@ -1,4 +1,4 @@
-package com.hoanganhtuan95ptit.example.fragment
+package com.psm.draggable.example.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.hoanganhtuan95ptit.draggable.utils.inflate
-import com.hoanganhtuan95ptit.example.R
+import com.psm.draggable.utils.inflate
+import com.psm.draggable.example.R
 import kotlinx.android.synthetic.main.fragment_bottom.*
 import kotlinx.android.synthetic.main.item_normal.view.*
 

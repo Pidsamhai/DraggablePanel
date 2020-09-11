@@ -1,5 +1,6 @@
-package com.hoanganhtuan95ptit.draggable.widget
+package com.psm.draggable.widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -11,10 +12,14 @@ class DragFrame @JvmOverloads constructor(
 
     var onTouchListener: OnTouchListener? = null
 
+    var isFullScreen = false
+
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+        if (isFullScreen) return false
         return if (onTouchListener != null) onTouchListener!!.onInterceptTouchEvent(ev) else super.onInterceptTouchEvent(ev)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         return if (onTouchListener != null) onTouchListener!!.onTouchEvent(event) else super.onTouchEvent(event)
     }

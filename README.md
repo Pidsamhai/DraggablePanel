@@ -1,6 +1,3 @@
-
-## Please switch to [DragView](https://github.com/tuanhav95/DragView), for the best support, thank you
-
 # DraggablePanel
 
 ![Alt text](output/ezgif.com-video-to-gif.gif) | ![Alt text](output/Screenshot_20190417-173713.png)  | ![Alt text](output/Screenshot_20190417-173738.png) 
@@ -20,7 +17,7 @@
     
     
     	dependencies {
-	        implementation 'com.github.hoanganhtuan95ptit:DraggablePanel:1.2.5'
+	        implementation 'com.github.psm:DraggablePanel:<latest-version>'
 	}
 ```
 
@@ -28,8 +25,8 @@
 
 * Xml
 
-```java
-        <com.hoanganhtuan95ptit.draggable.DraggablePanel
+```xml
+        <com.psm.draggable.DraggablePanel
                 android:id="@+id/draggablePanel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -46,7 +43,7 @@
 
 * Listener
 
-```java
+```kotlin
 
         draggablePanel.setDraggableListener(object : DraggablePanel.DraggableListener {
             override fun onChangeState(state: DraggablePanel.State) {
@@ -59,9 +56,32 @@
         })
 ```
 
+* Sync hide tablayout like youtube
+
+```kotlin
+    draggablePanel.setTabLayout(tablayout /* Any View wan't to hide */)
+```
+
+* Disable and Enable Drag when configuration change
+
+```kotlin
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        when(newConfig.orientation) {
+            Configuration.ORIENTATION_LANDSCAPE -> {
+                draggablePanel.enableFullScreen()
+            }
+
+            Configuration.ORIENTATION_PORTRAIT -> {
+                draggablePanel.disableFullScreen()
+            }
+        }
+        super.onConfigurationChanged(newConfig)
+    }
+```
+
 * Add frame
 
-```java
+```kotlin
         supportFragmentManager.beginTransaction().add(R.id.frameFirst, TopFragment()).commit() // add frame top
         supportFragmentManager.beginTransaction().add(R.id.frameSecond, BottomFragment()).commit() // add frame bottom
 ```
@@ -70,7 +90,7 @@
 
 * Action
 
-```java
+```kotlin
         btnMax.setOnClickListener { draggablePanel.maximize() }// maximize
         btnMin.setOnClickListener { draggablePanel.minimize() }//minimizeo
         btnClose.setOnClickListener { draggablePanel.close() }//close
@@ -80,7 +100,7 @@
 #### Custom [Detail code java](https://github.com/hoanganhtuan95ptit/DraggablePanel/blob/master/example/src/main/java/com/hoanganhtuan95ptit/example/CustomActivity.kt)
 
 * Custom
-```java
+```kotlin
         class DraggableSource @JvmOverloads constructor(
                 context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         ) : DraggablePanel(context, attrs, defStyleAttr) {
@@ -121,8 +141,8 @@
 ```
 
 * Xml
-```java
-        <com.hoanganhtuan95ptit.example.custom.DraggableSource
+```xml
+        <com.psm.draggable.example.custom.DraggableSource
                 android:id="@+id/draggablePanel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -136,7 +156,7 @@
 
 * Code
 
-```java
+```kotlin
         draggablePanel.setDraggableListener(object : DraggablePanel.DraggableListener {
             override fun onChangeState(state: DraggablePanel.State) {
             }

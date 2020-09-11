@@ -1,11 +1,11 @@
-package com.hoanganhtuan95ptit.example.custom
+package com.psm.draggable.example.custom
 
 import android.content.Context
 import android.util.AttributeSet
-import com.hoanganhtuan95ptit.draggable.DraggablePanel
-import com.hoanganhtuan95ptit.draggable.utils.inflate
-import com.hoanganhtuan95ptit.draggable.utils.reWidth
-import com.hoanganhtuan95ptit.example.R
+import com.psm.draggable.DraggablePanel
+import com.psm.draggable.utils.inflate
+import com.psm.draggable.utils.reWidth
+import com.psm.draggable.example.R
 import kotlinx.android.synthetic.main.layout_top.view.*
 
 class DraggableSource @JvmOverloads constructor(

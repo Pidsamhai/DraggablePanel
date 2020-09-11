@@ -1,10 +1,12 @@
-package com.hoanganhtuan95ptit.example
+package com.psm.draggable.example
 
+import android.annotation.SuppressLint
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.hoanganhtuan95ptit.draggable.DraggablePanel
-import com.hoanganhtuan95ptit.example.fragment.BottomFragment
-import com.hoanganhtuan95ptit.example.fragment.TopFragment
+import com.psm.draggable.DraggablePanel
+import com.psm.draggable.example.fragment.BottomFragment
+import com.psm.draggable.example.fragment.TopFragment
 import kotlinx.android.synthetic.main.activity_normal.*
 
 class NormalActivity : AppCompatActivity() {
@@ -34,5 +36,19 @@ class NormalActivity : AppCompatActivity() {
         btnMin.setOnClickListener { draggablePanel.minimize() }
         btnClose.setOnClickListener { draggablePanel.close() }
 
+    }
+
+    @SuppressLint("SwitchIntDef")
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        when(newConfig.orientation) {
+            Configuration.ORIENTATION_LANDSCAPE -> {
+                draggablePanel.enableFullScreen()
+            }
+
+            Configuration.ORIENTATION_PORTRAIT -> {
+                draggablePanel.disableFullScreen()
+            }
+        }
+        super.onConfigurationChanged(newConfig)
     }
 }

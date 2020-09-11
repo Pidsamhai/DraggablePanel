@@ -1,11 +1,11 @@
-package com.hoanganhtuan95ptit.example
+package com.psm.draggable.example
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.hoanganhtuan95ptit.draggable.DraggablePanel
-import com.hoanganhtuan95ptit.draggable.utils.toPx
-import com.hoanganhtuan95ptit.example.fragment.BottomFragment
-import com.hoanganhtuan95ptit.example.fragment.TopFragment
+import com.psm.draggable.DraggablePanel
+import com.psm.draggable.utils.toPx
+import com.psm.draggable.example.fragment.BottomFragment
+import com.psm.draggable.example.fragment.TopFragment
 import kotlinx.android.synthetic.main.activity_custom.*
 import kotlinx.android.synthetic.main.layout_bottom.*
 import kotlin.math.max
@@ -31,6 +31,8 @@ class CustomActivity : AppCompatActivity() {
             }
 
         })
+
+        draggablePanel.setTabLayout(tablayout)
 
         supportFragmentManager.beginTransaction().add(R.id.frameTop, TopFragment()).commit()
         supportFragmentManager.beginTransaction().add(R.id.frameBottom, BottomFragment()).commit()

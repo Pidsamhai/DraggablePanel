@@ -1,4 +1,4 @@
-package com.hoanganhtuan95ptit.draggable.utils
+package com.psm.draggable.utils
 
 import android.view.LayoutInflater
 import android.view.View
@@ -46,8 +46,8 @@ fun View.resizeAnimation(
             )
     )
 
-    pointList.animation(duration, { keyData, valueAnimator ->
-        resize(keyData.get("width") as Int, keyData.get("height") as Int)
+    pointList.animation(duration, { keyData, _ ->
+        resize(keyData["width"] as Int, keyData["height"] as Int)
     }, {
         onEnd()
     })
@@ -60,8 +60,8 @@ fun View.translationYAnim(
 ) {
     val pointList = ArrayList<ValuesHolder>()
     pointList.add(ValuesHolder("translationY", translationY, value))
-    pointList.animation(duration, { keyData, valueAnimator ->
-        translationY = keyData.get("translationY") as Float
+    pointList.animation(duration, { keyData, _ ->
+        translationY = keyData["translationY"] as Float
     }, {
         onEnd()
     })

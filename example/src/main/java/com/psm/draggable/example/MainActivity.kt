@@ -1,4 +1,4 @@
-package com.hoanganhtuan95ptit.example
+package com.psm.draggable.example
 
 import android.content.Intent
 import android.os.Bundle

@@ -53,17 +53,27 @@
         android:background="#000"
         tools:visibility="gone" />
 
-    <com.hoanganhtuan95ptit.example.custom.DraggableSource
+    <com.psm.draggable.example.custom.DraggableSource
         android:id="@+id/draggablePanel"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:height_when_max="300dp"
         app:height_when_min="58dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tablayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:state="MIN"
         tools:visibility="gone" />
+
+    <LinearLayout
+        android:background="#00ff00"
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

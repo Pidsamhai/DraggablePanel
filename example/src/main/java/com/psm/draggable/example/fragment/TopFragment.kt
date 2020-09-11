@@ -1,11 +1,11 @@
-package com.hoanganhtuan95ptit.example.fragment
+package com.psm.draggable.example.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.hoanganhtuan95ptit.example.R
+import com.psm.draggable.example.R
 
 class TopFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
